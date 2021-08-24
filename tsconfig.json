@@ -9,7 +9,6 @@
     "jsx": "react",
     "alwaysStrict": true,
     "sourceMap": true,
-    "watch": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
