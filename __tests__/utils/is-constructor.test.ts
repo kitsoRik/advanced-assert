@@ -8,19 +8,37 @@ describe('isConstructor', () => {
   });
 
   it('should check that function is contructor', () => {
-    expect(isConstructor(function () {})).toBeTruthy();
+    expect(
+      isConstructor(function () {
+        //
+      }),
+    ).toBeTruthy();
   });
 
   it('should check that arrow function is not contructor', () => {
-    expect(isConstructor(() => {})).toBeFalsy();
+    expect(
+      isConstructor(() => {
+        //
+      }),
+    ).toBeFalsy();
   });
 
   it('should check that function is not contructor', () => {
-    expect(isConstructor((function () {})())).toBeFalsy();
+    expect(
+      isConstructor(
+        (function () {
+          //
+        })(),
+      ),
+    ).toBeFalsy();
   });
 
   it('should check that function is not contructor', () => {
-    expect(isConstructor(() => {})).toBeFalsy();
+    expect(
+      isConstructor(() => {
+        //
+      }),
+    ).toBeFalsy();
   });
 
   it('should check that function is not contructor', () => {

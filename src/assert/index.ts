@@ -18,7 +18,7 @@ export function assert<TCondition, TErrorInstance>(
 // assert with error constructor
 export function assert<
   TCondition,
-  TError extends Object,
+  TError extends unknown,
   TErrorClass extends ClassConstructor<TError>,
 >(
   truthValue: TCondition,
@@ -29,7 +29,7 @@ export function assert<
 export function assert<
   TCondition,
   TErrorInstance,
-  TError extends Object,
+  TError extends unknown,
   TErrorClass extends ClassConstructor<TError>,
 >(
   truthValue: TCondition,
