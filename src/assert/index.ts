@@ -1,4 +1,4 @@
-import { assertWithInstanceError } from './assert-with-instance-error';
+import { assertWithErrorInstance } from './assert-with-error-instance';
 import { simpleAssert } from './simple-assert';
 
 export function assert<TCondition>(
@@ -12,7 +12,7 @@ export function assert<TCondition>(
   if (typeof messageOrErrorInstance === 'string')
     return simpleAssert(truthValue, messageOrErrorInstance);
   if (messageOrErrorInstance !== undefined)
-    return assertWithInstanceError(truthValue, messageOrErrorInstance);
+    return assertWithErrorInstance(truthValue, messageOrErrorInstance);
 
   throw new Error('Unexpected assert overloaded function');
 }

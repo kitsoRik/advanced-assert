@@ -1,6 +1,6 @@
 import { checkisConditionTruthy } from '../utils';
 
-export function assertWithInstanceError<TCondition, TErrorInstance>(
+export function assertWithErrorInstance<TCondition, TErrorInstance>(
   truthValue: TCondition,
   errorInstance: TErrorInstance,
 ): asserts truthValue {
