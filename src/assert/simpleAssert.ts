@@ -1,6 +1,6 @@
 import { AssertionError } from 'assert';
 
-export function assert<TCondition>(
+export function simpleAssert<TCondition>(
   truthValue: TCondition,
   message: string,
 ): asserts truthValue {
