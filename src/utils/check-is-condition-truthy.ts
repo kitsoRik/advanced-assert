@@ -1,3 +1,5 @@
-export function checkIsConditionTruthy<TCondition>(condition: TCondition) {
+export function checkIsConditionTruthy<TCondition>(
+  condition: TCondition,
+): boolean {
   return !!condition;
 }

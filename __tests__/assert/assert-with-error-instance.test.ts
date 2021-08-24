@@ -6,18 +6,20 @@ class ErrorClass {}
 describe('assert with error instance', () => {
   it('should throw text', () => {
     const errorText = 'Should be true';
-    expect(() => assertWithErrorInstance(FALSY_VALUE, 'Should be true')).toThrow(
-      errorText,
-    );
+    expect(() =>
+      assertWithErrorInstance(FALSY_VALUE, 'Should be true'),
+    ).toThrow(errorText);
   });
 
   it('should not throw ErrorClass instance', () => {
-    expect(() => assertWithErrorInstance(FALSY_VALUE, new ErrorClass())).toThrow(
-      ErrorClass,
-    );
+    expect(() =>
+      assertWithErrorInstance(FALSY_VALUE, new ErrorClass()),
+    ).toThrow(ErrorClass);
   });
 
   it('should not throw ErrorClass instance', () => {
-    expect(() => assertWithErrorInstance(TRUTHY_VALUE, new ErrorClass())).not.toThrow();
+    expect(() =>
+      assertWithErrorInstance(TRUTHY_VALUE, new ErrorClass()),
+    ).not.toThrow();
   });
 });
