@@ -16,6 +16,9 @@ jobs:
         env:
           CI: true
   publish:
+    branches:
+      - 'master'
+
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +30,6 @@ jobs:
       - run: npm run build
       - uses: JS-DevTools/npm-publish@v1
         with:
-            token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
         env:
           CI: true
