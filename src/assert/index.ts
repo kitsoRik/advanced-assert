@@ -1,4 +1,4 @@
-import { simpleAssert } from './simpleAssert';
+import { simpleAssert } from './simple-assert';
 
 export function assert<TCondition>(
   truthValue: TCondition,
