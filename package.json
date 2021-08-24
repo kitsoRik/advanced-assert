@@ -27,7 +27,7 @@
     "test:watch": "jest --watch"
   },
   "author": "Rostyslav Pidburachynskyi",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {},
   "volta": {
     "node": "14.16.1"
