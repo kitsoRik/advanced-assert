@@ -1,6 +1,9 @@
 name: Test
 
-on: [push]
+on: 
+  push:
+    branches:
+     - *
 
 jobs:
   build:
@@ -16,9 +19,6 @@ jobs:
         env:
           CI: true
   publish:
-    branches:
-      - 'master'
-
     runs-on: ubuntu-latest
 
     steps:
