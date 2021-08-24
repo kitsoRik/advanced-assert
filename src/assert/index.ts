@@ -1,3 +1,4 @@
+import { assertWithInstanceError } from './assert-with-instance-error';
 import { simpleAssert } from './simple-assert';
 
 export function assert<TCondition>(
@@ -6,9 +7,12 @@ export function assert<TCondition>(
 ): asserts truthValue;
 export function assert<TCondition>(
   truthValue: TCondition,
-  message: any,
+  messageOrErrorInstance: any,
 ): asserts truthValue {
-  if (typeof message === 'string') return simpleAssert(truthValue, message);
+  if (typeof messageOrErrorInstance === 'string')
+    return simpleAssert(truthValue, messageOrErrorInstance);
+  if (messageOrErrorInstance !== undefined)
+    return assertWithInstanceError(truthValue, messageOrErrorInstance);
 
   throw new Error('Unexpected assert overloaded function');
 }
