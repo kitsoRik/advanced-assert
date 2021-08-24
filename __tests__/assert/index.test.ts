@@ -23,14 +23,6 @@ describe('assert', () => {
     it('should be passed', () => {
       expect(() => assert(FALSY_VALUE, new ErrorClass())).toThrow(ErrorClass);
     });
-
-    it('should be passed', () => {
-      try {
-        expect(() => assert(FALSY_VALUE, 1)).toThrow();
-      } catch (e) {
-        expect(e).toEqual(1);
-      }
-    });
   });
 
   describe('assert with error constructor', () => {
