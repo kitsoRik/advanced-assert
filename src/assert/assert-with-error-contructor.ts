@@ -1,12 +1,12 @@
-import { ClassConstructorWithoutParameters } from '../types';
+import { ClassConstructor } from '../types';
 import { checkisConditionTruthy } from '../utils';
 
 export function assertWithErrorConstructor<
   TCondition,
   TError extends Object,
-  TErrorClass extends ClassConstructorWithoutParameters<TError>,
->(truthValue: TCondition, ErrorClass: TErrorClass): asserts truthValue {
+  TErrorClass extends ClassConstructor<TError>,
+>(truthValue: TCondition, ErrorClass: TErrorClass, ...args: ConstructorParameters<TErrorClass>): asserts truthValue {
   if (checkisConditionTruthy(truthValue)) return;
 
-  throw new ErrorClass();
+  throw new ErrorClass(...args);
 }
