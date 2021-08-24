@@ -1,10 +1,12 @@
 import { AssertionError } from 'assert';
 
+import { checkisConditionTruthy } from '../utils';
+
 export function simpleAssert<TCondition>(
   truthValue: TCondition,
   message: string,
 ): asserts truthValue {
-  if (!truthValue) {
-    throw new AssertionError({ message });
-  }
+  if (checkisConditionTruthy(truthValue)) return;
+
+  throw new AssertionError({ message });
 }
