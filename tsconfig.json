@@ -17,8 +17,7 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
-    "declaration": true,
-    "rootDir": "./src"
+    "declaration": true
   },
   "include": [
     "src/**/*",

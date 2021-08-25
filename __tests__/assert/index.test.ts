@@ -1,4 +1,5 @@
 import { AdvancedAssertionError, assert } from '../../src';
+import { Settings } from '../../src/settings';
 import { FALSY_VALUE, TRUTHY_VALUE } from '../helpers';
 
 describe('assert', () => {
@@ -39,6 +40,30 @@ describe('assert', () => {
       expect(() =>
         assert(FALSY_VALUE, ErrorClass, 'message', 'reason'),
       ).toThrow(ErrorClass);
+    });
+  });
+
+  describe('Settings', () => {
+    describe('throwAssertionCallbackError', () => {
+      it('should throw default AdvancedAssertionError', () => {
+        expect(() => assert(FALSY_VALUE, 'Assertion message')).toThrow(
+          AdvancedAssertionError,
+        );
+      });
+
+      it('should throw error from new callback', () => {
+        class ErrorClass {
+          constructor(protected message: string) {}
+        }
+
+        Settings.instance.throwAssertionErrorCallback = ({ message }) => {
+          throw new ErrorClass(message);
+        };
+
+        expect(() => assert(FALSY_VALUE, 'Assertion message')).toThrow(
+          ErrorClass,
+        );
+      });
     });
   });
 });
