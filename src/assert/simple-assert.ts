@@ -1,4 +1,4 @@
-import { AdvancedAssertionError } from '../error';
+import { Settings } from '../settings';
 
 import { checkisConditionTruthy } from '../utils';
 
@@ -8,5 +8,5 @@ export function simpleAssert<TCondition>(
 ): asserts truthValue {
   if (checkisConditionTruthy(truthValue)) return;
 
-  throw new AdvancedAssertionError({ message });
+  throw new Settings.instance.ErrorContructor({ message });
 }
