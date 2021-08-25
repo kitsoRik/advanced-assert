@@ -1,18 +1,17 @@
-import { AssertionError } from 'assert';
-import { assert } from '../../src';
+import { AdvancedAssertionError, assert } from '../../src';
 import { FALSY_VALUE, TRUTHY_VALUE } from '../helpers';
 
 describe('assert', () => {
   describe('simple assert', () => {
     it('should be passed', () => {
       expect(() => assert(FALSY_VALUE, 'Value must be truthy')).toThrow(
-        AssertionError,
+        AdvancedAssertionError,
       );
     });
 
     it('should be passed', () => {
       expect(() => assert(TRUTHY_VALUE, 'Value must be truthy')).not.toThrow(
-        AssertionError,
+        AdvancedAssertionError,
       );
     });
   });
