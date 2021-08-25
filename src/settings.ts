@@ -1,5 +1,5 @@
 import { AdvancedAssertionError } from './error';
-import { ClassConstructor } from './types';
+import { ThrowAssertionErrorCallback } from './types';
 
 export class Settings {
   private static _instance: Settings;
@@ -8,13 +8,17 @@ export class Settings {
     return (Settings._instance = Settings._instance || new Settings());
   }
 
-  protected _errorConstructor: ClassConstructor<any> = AdvancedAssertionError;
+  protected _throwAssertionErrorCallback: ThrowAssertionErrorCallback = (
+    options,
+  ) => {
+    throw new AdvancedAssertionError(options);
+  };
 
-  get ErrorContructor() {
-    return this._errorConstructor;
+  get throwAssertionErrorCallback(): ThrowAssertionErrorCallback {
+    return this._throwAssertionErrorCallback;
   }
 
-  set ErrorContructor(value: any) {
-    this._errorConstructor = value;
+  set throwAssertionErrorCallback(value: ThrowAssertionErrorCallback) {
+    this._throwAssertionErrorCallback = value;
   }
 }

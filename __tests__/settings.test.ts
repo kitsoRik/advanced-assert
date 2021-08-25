@@ -2,17 +2,27 @@ import { AdvancedAssertionError } from '../src';
 import { Settings } from '../src/settings';
 
 describe('Settings', () => {
-  it('should return default AdvancedAssertionConstructor', () => {
-    expect(Settings.instance.ErrorContructor).toBe(
-      AdvancedAssertionError,
-    );
+  it('should return default throwErrorCallback', () => {
+    expect(Settings.instance.throwAssertionErrorCallback).toBeTruthy();
   });
 
-  it('should return changed AdvancedAssertionConstructor', () => {
-    class ErrorClass {}
+  it('should throw default AdvancedAssertionError', () => {
+    expect(() =>
+      Settings.instance.throwAssertionErrorCallback({ message: 'Message' }),
+    ).toThrowError(AdvancedAssertionError);
+  });
 
-    Settings.instance.ErrorContructor = ErrorClass;
+  it('should throw with new callback', () => {
+    class CustomError {
+      constructor(protected message: string) {}
+    }
 
-    expect(Settings.instance.ErrorContructor).toBe(ErrorClass);
+    Settings.instance.throwAssertionErrorCallback = ({ message }) => {
+      throw new CustomError(message);
+    };
+
+    expect(() =>
+      Settings.instance.throwAssertionErrorCallback({ message: 'Message' }),
+    ).toThrowError(CustomError);
   });
 });

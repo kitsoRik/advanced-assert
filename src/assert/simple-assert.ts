@@ -8,5 +8,5 @@ export function simpleAssert<TCondition>(
 ): asserts truthValue {
   if (checkisConditionTruthy(truthValue)) return;
 
-  throw new Settings.instance.ErrorContructor({ message });
+  throw Settings.instance.throwAssertionErrorCallback({ message });
 }
