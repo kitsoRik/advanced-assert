@@ -33,6 +33,26 @@ describe('assert', () => {
     });
   });
 
+  describe('assert with callback constructor', () => {
+    it('should be passed', () => {
+      class ErrorClass {}
+
+      expect(() => assert(FALSY_VALUE, () => new ErrorClass())).toThrow(
+        ErrorClass,
+      );
+    });
+
+    it('should be passed', () => {
+      class ErrorClass {}
+
+      expect(() =>
+        assert(FALSY_VALUE, function () {
+          return new ErrorClass();
+        }),
+      ).toThrow(ErrorClass);
+    });
+  });
+
   describe('Settings', () => {
     describe('throwAssertionCallbackError', () => {
       it('should throw default AdvancedAssertionError', () => {
