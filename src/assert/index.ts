@@ -1,5 +1,5 @@
-import { ClassConstructor } from '../types';
-import { assertWithErrorConstructor } from './assert-with-error-contructor';
+import { ClassConstructorWithoutParameters } from '../types';
+import { assertWithErrorConstructorOrCallback } from './assert-with-error-contructor-or-callback';
 import { assertWithErrorInstance } from './assert-with-error-instance';
 import { simpleAssert } from './simple-assert';
 
@@ -15,38 +15,33 @@ export function assert<TCondition, TErrorInstance>(
   errorInstance: TErrorInstance,
 ): asserts truthValue;
 
-// assert with error constructor
+// assert with error constructor or callback
 export function assert<
   TCondition,
   TError extends unknown,
-  TErrorClass extends ClassConstructor<TError>,
->(
-  truthValue: TCondition,
-  ErrorClass: TErrorClass,
-  ...args: ConstructorParameters<TErrorClass>
-): asserts truthValue;
+  TErrorClass extends ClassConstructorWithoutParameters<TError>,
+>(truthValue: TCondition, ErrorClass: TErrorClass): asserts truthValue;
 
 export function assert<
   TCondition,
   TErrorInstance,
   TError extends unknown,
-  TErrorClass extends ClassConstructor<TError>,
+  TErrorClass extends ClassConstructorWithoutParameters<TError>,
 >(
   truthValue: TCondition,
   messageOrErrorInstanceOrErrorConstructor:
     | string
     | TErrorInstance
-    | TErrorClass,
-  ...args: ConstructorParameters<TErrorClass>
+    | TErrorClass
+    | (() => TError),
 ): asserts truthValue {
   if (typeof messageOrErrorInstanceOrErrorConstructor === 'string')
     return simpleAssert(truthValue, messageOrErrorInstanceOrErrorConstructor);
 
   if (typeof messageOrErrorInstanceOrErrorConstructor === 'function')
-    return assertWithErrorConstructor(
+    return assertWithErrorConstructorOrCallback(
       truthValue,
-      messageOrErrorInstanceOrErrorConstructor as ClassConstructor<TError>,
-      ...args,
+      messageOrErrorInstanceOrErrorConstructor as ClassConstructorWithoutParameters<TError>,
     );
 
   if (messageOrErrorInstanceOrErrorConstructor !== undefined)

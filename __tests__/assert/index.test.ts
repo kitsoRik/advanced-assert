@@ -31,14 +31,24 @@ describe('assert', () => {
 
       expect(() => assert(FALSY_VALUE, ErrorClass)).toThrow(ErrorClass);
     });
+  });
+
+  describe('assert with callback constructor', () => {
+    it('should be passed', () => {
+      class ErrorClass {}
+
+      expect(() => assert(FALSY_VALUE, () => new ErrorClass())).toThrow(
+        ErrorClass,
+      );
+    });
 
     it('should be passed', () => {
-      class ErrorClass {
-        constructor(protected message: string, protected reason: string) {}
-      }
+      class ErrorClass {}
 
       expect(() =>
-        assert(FALSY_VALUE, ErrorClass, 'message', 'reason'),
+        assert(FALSY_VALUE, function () {
+          return new ErrorClass();
+        }),
       ).toThrow(ErrorClass);
     });
   });
