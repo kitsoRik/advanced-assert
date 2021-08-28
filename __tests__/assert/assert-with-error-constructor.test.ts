@@ -16,32 +16,4 @@ describe('assert with error instance', () => {
       assertWithErrorConstructor(TRUTHY_VALUE, ErrorClass),
     ).not.toThrow();
   });
-
-  it('should throw ErrorClass instance with parameters in constructor', () => {
-    class ErrorClass {
-      constructor(protected message: string) {}
-    }
-
-    expect(() =>
-      assertWithErrorConstructor(
-        FALSY_VALUE,
-        ErrorClass,
-        'Value must be truthy',
-      ),
-    ).toThrow();
-  });
-
-  it('should not throw ErrorClass instance with parameters in constructor', () => {
-    class ErrorClass {
-      constructor(protected message: string) {}
-    }
-
-    expect(() =>
-      assertWithErrorConstructor(
-        TRUTHY_VALUE,
-        ErrorClass,
-        'Value must be truthy',
-      ),
-    ).not.toThrow();
-  });
 });

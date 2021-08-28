@@ -1,5 +1,5 @@
-export type ClassConstructor<T, A extends unknown[] = unknown[]> = {
-  new (...args: A): T;
+export type ClassConstructorWithoutParameters<T> = {
+  new (): T;
 };
 
 export type ThrowAssertionErrorCallback = (options: {

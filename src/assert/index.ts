@@ -1,4 +1,4 @@
-import { ClassConstructor } from '../types';
+import { ClassConstructorWithoutParameters } from '../types';
 import { assertWithErrorConstructor } from './assert-with-error-contructor';
 import { assertWithErrorInstance } from './assert-with-error-instance';
 import { simpleAssert } from './simple-assert';
@@ -19,25 +19,23 @@ export function assert<TCondition, TErrorInstance>(
 export function assert<
   TCondition,
   TError extends unknown,
-  TErrorClass extends ClassConstructor<TError>,
+  TErrorClass extends ClassConstructorWithoutParameters<TError>,
 >(
   truthValue: TCondition,
   ErrorClass: TErrorClass,
-  ...args: ConstructorParameters<TErrorClass>
 ): asserts truthValue;
 
 export function assert<
   TCondition,
   TErrorInstance,
   TError extends unknown,
-  TErrorClass extends ClassConstructor<TError>,
+  TErrorClass extends ClassConstructorWithoutParameters<TError>,
 >(
   truthValue: TCondition,
   messageOrErrorInstanceOrErrorConstructor:
     | string
     | TErrorInstance
     | TErrorClass,
-  ...args: ConstructorParameters<TErrorClass>
 ): asserts truthValue {
   if (typeof messageOrErrorInstanceOrErrorConstructor === 'string')
     return simpleAssert(truthValue, messageOrErrorInstanceOrErrorConstructor);
@@ -45,8 +43,7 @@ export function assert<
   if (typeof messageOrErrorInstanceOrErrorConstructor === 'function')
     return assertWithErrorConstructor(
       truthValue,
-      messageOrErrorInstanceOrErrorConstructor as ClassConstructor<TError>,
-      ...args,
+      messageOrErrorInstanceOrErrorConstructor as ClassConstructorWithoutParameters<TError>,
     );
 
   if (messageOrErrorInstanceOrErrorConstructor !== undefined)

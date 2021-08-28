@@ -31,16 +31,6 @@ describe('assert', () => {
 
       expect(() => assert(FALSY_VALUE, ErrorClass)).toThrow(ErrorClass);
     });
-
-    it('should be passed', () => {
-      class ErrorClass {
-        constructor(protected message: string, protected reason: string) {}
-      }
-
-      expect(() =>
-        assert(FALSY_VALUE, ErrorClass, 'message', 'reason'),
-      ).toThrow(ErrorClass);
-    });
   });
 
   describe('Settings', () => {
