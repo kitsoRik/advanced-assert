@@ -4,6 +4,8 @@
 
 `npm install advanced-assert --save`
 
+Only es6+
+
 ### Example
 
 ```typescript
