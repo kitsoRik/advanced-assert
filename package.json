@@ -1,6 +1,6 @@
 {
   "name": "advanced-assert",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.1",
   "description": "Advanced assert function",
   "main": "build/index.js",
   "devDependencies": {
